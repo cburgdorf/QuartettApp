@@ -1,3 +1,10 @@
+//<debug>
+Ext.Loader.setPath({
+    'Ext.ux': 'libs/ux'
+});
+Ext.Loader.setConfig('disableCaching', false);
+//</debug>
+
 Ext.application({
     name: 'QuartettApp',
 
@@ -5,6 +12,7 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
+    controllers: ['GameController'],
     views: ['Main'],
 
     icon: {
@@ -31,6 +39,10 @@ Ext.application({
 
         // Initialize the main view
         Ext.Viewport.add(Ext.create('QuartettApp.view.Main'));
+
+        //this.redirectTo('start')
+        //WTF redirectTo causes the route to run twice while this works
+        window.location = '#start';
     },
 
     onUpdated: function() {

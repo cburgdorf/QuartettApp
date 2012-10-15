@@ -1,0 +1,2 @@
+/*Fixes Sencha bug that truncates the title */
+.x-title{padding:0 .3em}.x-title .x-innerhtml{padding:0}

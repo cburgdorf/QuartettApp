@@ -16,7 +16,7 @@
      * This value is needed when build to resolve your application's dependencies if it requires server-side resources
      * that are not accessible via file system protocol.
      */
-    "url": null,
+    "url": "http://localhost:8000",
 
     /**
      * List of all JavaScript assets in the right execution order.
@@ -39,6 +39,31 @@
             "path": "app.js",
             "bundle": true,  /* Indicates that all class dependencies are concatenated into this file when build */
             "update": "delta"
+        },
+        {
+            "path": "libs/quartettjs/quartett.core.js",
+
+        },
+        {
+            "path": "libs/quartettjs/quartett.cardstack.js"
+        },
+        {
+            "path": "libs/quartettjs/quartett.defaultcardcomparer.js"
+        },
+        {
+            "path": "libs/quartettjs/quartett.player.js"
+        },
+        {
+            "path": "libs/quartettjs/quartett.util.js"
+        },
+        {
+            "path": "libs/quartettjs/quartett.game.js"
+        },
+        {
+            "path": "libs/quartettjs/quartett.data.js"
+        },
+        {
+            "path": "libs/jsdeferred/jsdeferred.nodoc.js"
         }
     ],
 
@@ -58,6 +83,18 @@
     "css": [
         {
             "path": "resources/css/app.css",
+            "update": "delta"
+        },
+        {
+            "path": "resources/css/app-overwrites.css",
+            "update": "delta"
+        },
+        {
+            "path": "resources/css/GameView.css",
+            "update": "delta"
+        },
+        {
+            "path": "resources/css/CardActionOverlay.css",
             "update": "delta"
         }
     ],
@@ -123,7 +160,7 @@
         "product": "touch",
         "minVersion": 3,
         "debug": false,
-        "logger": "no"
+        "logger": false
     },
 
     /**

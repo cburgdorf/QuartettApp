@@ -3,44 +3,103 @@ Ext.define("QuartettApp.view.GameView", {
     xtype: 'gameview',
     requires: [
         'Ext.Container',
-        'QuartettApp.helper.Helper'
+        'QuartettApp.helper.Helper',
+        'Ext.ux.ImageViewer'
     ],
     config: {
         cardTemplate: new Ext.XTemplate(
-            '<p>Kids: ',
-            '<tpl for=".">',       // process the data.kids node
-            '<p>{#}. {name}</p>',  // use current array index to autonumber
-            '</tpl></p>'
+            '<div class="card-data">',
+                '<div class="left-box">',
+                    '<tpl for=".">',
+                    '<div class="col">',
+                        '<span>{key}</span>' +
+                    '</div>',
+                    '</tpl>',
+                '</div>',
+                '<div class="right-box">',
+                '<tpl for=".">',
+                '<div class="col">',
+                    '<span>{value}</span>',
+                    '<div data-key="{key}" class="x-button"><span data-key="{key}" class="x-button-label">Play!</span></div>',
+                '</div>',
+                '</tpl>',
+                '</div>',
+            '</div>'
         ),
-        items: [
-            {
-                docked: 'top',
-                xtype: 'titlebar',
-                title: 'Running Game...'
-            }
-
-        ]
+        items: [],
+        activePlayer: '',
+        layout: 'vbox'
     },
     initialize: function(){
+        var me = this;
 
-        QuartettApp.helper.Helper.toArrayOfKeyValuePairs();
-
-        this._propertyBox = this.add({
-            html: 'This is our running game, showing the topmost card'
+        me._cardCount = Ext.factory({
+            xtype:'container',
+            html: '0 cards',
+            cls: 'card-counter'
         });
 
-        this.showCard();
-    },
-    showCard: function(card){
-        var data = {
-            name: 'Don Griffin',
-            title: 'Senior Technomage',
-            company: 'Sencha Inc.'
-        };
+        me._titleBar = me.add({
+            docked: 'top',
+            xtype: 'titlebar',
+            title: 'Play!',
+            items:[me._cardCount]
+        });
 
+        var imageContainer = me.add({
+            style: 'background: white',
+            flex: 1,
+            layout: {
+                type: 'fit'
+            }
+        });
+
+        me._imageBox = imageContainer.add({
+            cls: 'card-image',
+            xtype: 'imageviewer'
+            //imageSrc: 'resources/images/cardimages/Ferrari_612_Scaglietti_Meilenwerk.jpg'
+            //imageSrc: 'resources/images/cardimages/Bentley_Continental_GT_Speed_20090720_front.JPG'
+        });
+
+        me._propertyBox = me.add({
+            html: 'This is our running game, showing the topmost card',
+            docked: 'bottom',
+            cls: 'property-grid'
+        });
+
+        me.element.on('tap', function(event){
+            var $col = Ext.get(event.target);
+            var property = $col.getAttribute('data-key');
+
+            if (property){
+                me.onPropertyTap(property);
+                me.fireEvent('propertyTap', property)
+                return
+            }
+        });
+    },
+    writeTitle: function(value){
+        this._titleBar.setTitle(value);
+    },
+    writeCardCount: function(value){
+        this._cardCount.setHtml(value + ' cards');
+    },
+    showCard: function(keyValuePairs, card){
         var template = this.getCardTemplate();
-        var html = template.apply(data);
+        var html = template.apply(keyValuePairs);
         this._propertyBox.setHtml(html);
+
+        if (!card || !card._image || card._image.length === 0){
+            this._imageBox.unloadImage();
+            this._imageBox.hide();
+        }
+        else {
+            this._imageBox.show();
+            this._imageBox.loadImage('resources/images/cardimages/' + card._image);
+        }
+    },
+    onPropertyTap: function(property){
+        //alert(property);
     }
 
 });

@@ -1,12 +1,12 @@
 Ext.define("QuartettApp.helper.Helper", {
     singleton: true,
     xtype: "helper",
-    toArrayOfKeyValuePairs: function(object){
+    toArrayOfKeyValuePairs: function(value){
         var tempArray = [];
-        Ext.Object.each(function(key, value){
+        Ext.Object.each(value, function(key, val){
             tempArray.push({
                 key: key,
-                value: value
+                value: val
             });
         });
         return tempArray;

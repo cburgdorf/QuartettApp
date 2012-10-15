@@ -1,0 +1,9 @@
+* Notification when user wins a card FIXED
+* implement computer action FIXED
+    means:
+        show overlay "computers turn, computer is thinking"
+        make that modal so that the player can't play while the computer is the active player
+* Notification when a draw happens
+  * when you are the active player say "pick another property" FIXED
+  * when you are not the active player say "wait for the computer to pick another property" FIXED
+  * when you are not involved anymore, tell that :-) (DELAYED until we have multiplayer support)
