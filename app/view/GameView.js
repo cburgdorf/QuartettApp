@@ -20,7 +20,11 @@ Ext.define("QuartettApp.view.GameView", {
                 '<tpl for=".">',
                 '<div class="col">',
                     '<span>{value}</span>',
-                    '<div data-key="{key}" class="x-button"><span data-key="{key}" class="x-button-label">Play!</span></div>',
+                    //Todo: Currently we hard code those. Would be better to have generic title and subtitle on the card
+                    //and render those with a different visual style
+                    '<tpl if="key !== \'name\' && key !== \'carmaker\'">',
+                        '<div data-key="{key}" class="x-button"><span data-key="{key}" class="x-button-label">Play!</span></div>',
+                    '</tpl>',
                 '</div>',
                 '</tpl>',
                 '</div>',
