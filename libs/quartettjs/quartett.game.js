@@ -57,8 +57,11 @@
 
         assertConfig(options);
         //Todo handle transformation of card types. For now let's assume we get an array of cards
-        that._cardStack.add(options.cards);
-        that._gameCardCount = options.cards.length;
+
+        var cards = options.shuffle ? quartett.Util.shuffleArray(options.cards) : options.cards;
+
+        that._cardStack.add(cards);
+        that._gameCardCount = cards.length;
 
         that._playerCount = options.player.length;
         that._initialCardsPerPlayer = that._cardStack.getLength() / that._playerCount;

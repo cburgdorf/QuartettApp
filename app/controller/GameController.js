@@ -43,7 +43,8 @@ Ext.define('QuartettApp.controller.GameController', {
             },
             drawHappened: function(game, data){
                 me._onDrawHappened(game, data);
-            }
+            },
+            shuffle: true
         };
 
         var game = this._game = new quartett.Game(gameOptions);
