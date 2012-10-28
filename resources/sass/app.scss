@@ -1,5 +1,5 @@
 $base-color: #333;
-$active-color: #8FC619;
+$active-color: #f77800;
 
 $base-gradient: 'matte';
 $tabs-dark: $base-color;
@@ -26,4 +26,4 @@ $tabs-dark: $base-color;
 
 // Your custom code goes here...
 
-@include sencha-button-ui('play', #8FC619, 'matte');
+@include sencha-button-ui('play', #f77800, 'matte');
