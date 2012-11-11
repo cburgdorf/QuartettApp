@@ -51,7 +51,7 @@ Ext.define('QuartettApp.controller.GameController', {
         var myPlayer = this._myPlayer = game.getMe();
 
         this._validProperties = QuartettApp.helper.Helper
-            .toArrayOfKeyValuePairs(myPlayer.getTopmostCard())
+            .cardsToArrayOfKeyValuePairs(myPlayer.getTopmostCard())
             .filter(function(pair){
                 return pair.key.indexOf('_') !== 0 && pair.key !== 'name' && pair.key !== 'carmaker';
             })
@@ -75,13 +75,13 @@ Ext.define('QuartettApp.controller.GameController', {
         this.getGameView().writeTitle(whosTurn);
     },
     _onPropertyTap: function(property){
-        this._game.playCard(property);
+        this._game.playCard(property.toLowerCase());
     },
     _showCard: function(card){
         var gameView = this.getGameView();
 
         var keyValuePairs = QuartettApp.helper.Helper
-            .toArrayOfKeyValuePairs(card)
+            .cardsToArrayOfKeyValuePairs(card)
             .filter(function(pair){
                 return pair.key.indexOf('_') !== 0;
             });
@@ -97,11 +97,11 @@ Ext.define('QuartettApp.controller.GameController', {
     },
     _onUserLostCard: function(card, winnerCard, property){
         var data = {
-            playedProperty: property,
-            yourValue: card[property],
+            playedProperty: card[property].displayName,
+            yourValue: card[property].displayValue,
             otherPlayer: {
                 name: 'Computer',
-                value: winnerCard[property]
+                value: winnerCard[property].displayValue
             }
         };
         var overlay = QuartettApp.view.CardActionOverlay;
@@ -155,7 +155,7 @@ Ext.define('QuartettApp.controller.GameController', {
     _playOnRandomProperty: function(){
         var properties = this._validProperties;
         var randomProperty = properties[Math.floor(Math.random() * properties.length)];
-        this._game.playCard(randomProperty);
+        this._game.playCard(randomProperty.toLowerCase());
     },
     _computersTurn: function(){
         var me = this;

@@ -22,7 +22,10 @@
      * List of all JavaScript assets in the right execution order.
      * Each item is an object with the following format:
      *      {
-     *          "path": "path/to/script.js" // Relative path to this app.json file
+     *          "path": "path/to/script.js" // Path to file, if local file it must be relative to this app.json file
+     *          "remote": true              // (Optional)
+     *                                      // - Defaults to undefined (falsey) to signal a local file which will be copied
+     *                                      // - Specify true if this file is a remote file which will not to be copied
      *          "update": "delta"           // (Optional)
      *                                      //  - If not specified, this file will only be loaded once, and
      *                                      //    cached inside localStorage until this value is changed.
@@ -33,7 +36,7 @@
      */
     "js": [
         {
-            "path": "sdk/sencha-touch.js"
+            "path": "touch/sencha-touch.js"
         },
         {
             "path": "app.js",
@@ -46,6 +49,9 @@
         },
         {
             "path": "libs/quartettjs/quartett.cardstack.js"
+        },
+        {
+            "path": "libs/quartettjs/quartett.card.js"
         },
         {
             "path": "libs/quartettjs/quartett.defaultcardcomparer.js"
@@ -71,7 +77,10 @@
      * List of all CSS assets in the right inclusion order.
      * Each item is an object with the following format:
      *      {
-     *          "path": "path/to/item.css" // Relative path to this app.json file
+     *          "path": "path/to/item.css" // Path to file, if local file it must be relative to this app.json file
+     *          "remote": true             // (Optional)
+     *                                     // - Defaults to undefined (falsey) to signal a local file which will be copied
+     *                                     // - Specify true if this file is a remote file which will not to be copied
      *          "update": "delta"          // (Optional)
      *                                     //  - If not specified, this file will only be loaded once, and
      *                                     //    cached inside localStorage until this value is changed to either one below
@@ -167,5 +176,5 @@
      * Uniquely generated id for this application, used as prefix for localStorage keys.
      * Normally you should never change this value.
      */
-    "id": "e4743c90-1694-11e2-a507-87f63e6d1b99"
+    "id": "36a722d6-a55a-4a63-a8b6-3f88ee171bfb"
 }

@@ -1,9 +1,10 @@
 //<debug>
+Ext.Loader.setConfig('disableCaching', false);
+//</debug>
+
 Ext.Loader.setPath({
     'Ext.ux': 'libs/ux'
 });
-Ext.Loader.setConfig('disableCaching', false);
-//</debug>
 
 Ext.application({
     name: 'QuartettApp',

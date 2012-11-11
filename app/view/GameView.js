@@ -93,13 +93,13 @@ Ext.define("QuartettApp.view.GameView", {
         var html = template.apply(keyValuePairs);
         this._propertyBox.setHtml(html);
 
-        if (!card || !card._image || card._image.length === 0){
+        if (!card || !card._image || !card._image.value || card._image.value.length === 0){
             this._imageBox.unloadImage();
             this._imageBox.hide();
         }
         else {
             this._imageBox.show();
-            this._imageBox.loadImage('resources/images/cardimages/' + card._image);
+            this._imageBox.loadImage('resources/images/cardimages/' + card._image.value);
         }
     },
     onPropertyTap: function(property){
