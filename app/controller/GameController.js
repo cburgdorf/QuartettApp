@@ -53,7 +53,7 @@ Ext.define('QuartettApp.controller.GameController', {
         this._validProperties = QuartettApp.helper.Helper
             .cardsToArrayOfKeyValuePairs(myPlayer.getTopmostCard())
             .filter(function(pair){
-                return pair.key.indexOf('_') !== 0 && pair.key !== 'name' && pair.key !== 'carmaker';
+                return pair.key.indexOf('_') !== 0 && pair.key !== 'Name' && pair.key !== 'Carmaker';
             })
             .map(function(pair){
                 return pair.key;
