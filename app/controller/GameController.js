@@ -142,10 +142,10 @@ Ext.define('QuartettApp.controller.GameController', {
         var value = options.playerOne.getTopmostCard()[options.property];
 
         if (this._game.getActivePlayer() === this._myPlayer){
-            QuartettApp.view.CardActionOverlay.flashYourDraw({ playedProperty: options.property, value: value });
+            QuartettApp.view.CardActionOverlay.flashYourDraw({ playedProperty: options.property, value: value.value });
         }
         else{
-            QuartettApp.view.CardActionOverlay.flashComputersDraw({ playedProperty: options.property, value: value })
+            QuartettApp.view.CardActionOverlay.flashComputersDraw({ playedProperty: options.property, value: value.value })
                                               .next(function(){
                                                   me._computersTurn();
                                               })
